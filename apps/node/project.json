@@ -1,0 +1,23 @@
+{
+  "name": "node",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/node/src",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/main.ts",
+        "cwd": "apps/node"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/apps/node"],
+      "options": {
+        "command": "tsc -p tsconfig.app.json",
+        "cwd": "apps/node"
+      }
+    }
+  }
+}

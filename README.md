@@ -1,9 +1,26 @@
 # Load Balancer Playground
 
 #### Stack
+- Nx monorepo
 - Docker compose
 - Nginx
-- Python
+- Python / FastAPI
+- Node.js / NestJS
+
+#### Apps
+- `apps/python`: existing stateless FastAPI application
+- `apps/node`: stateless NestJS application with matching routes
+
+### install Node workspace dependencies
+```bash
+npm install
+```
+
+### run apps with Nx
+```bash
+npm run start:python
+npm run start:node
+```
 
 ### terminal 1
 ```bash

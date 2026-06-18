@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   fastapi-1:
-    build: .
+    build: ./apps/python
     container_name: fastapi-1
     expose:
       - "8000"
@@ -13,7 +13,7 @@ services:
       - app-network
 
   fastapi-2:
-    build: .
+    build: ./apps/python
     container_name: fastapi-2
     expose:
       - "8000"
@@ -24,7 +24,7 @@ services:
       - app-network
 
   fastapi-3:
-    build: .
+    build: ./apps/python
     container_name: fastapi-3
     expose:
       - "8000"
@@ -44,6 +44,7 @@ services:
     depends_on:
       - fastapi-1
       - fastapi-2
+      - fastapi-3
     networks:
       - app-network
 
