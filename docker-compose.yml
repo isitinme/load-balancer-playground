@@ -1,36 +1,25 @@
-version: '3.8'
-
 services:
-  fastapi-1:
+  fastapi:
     build: ./apps/python
-    container_name: fastapi-1
+    container_name: fastapi
     expose:
       - "8000"
     environment:
       - PYTHONUNBUFFERED=1
-      - APP_NAME=fastapi-1
+      - APP_NAME=fastapi
     networks:
       - app-network
 
-  fastapi-2:
-    build: ./apps/python
-    container_name: fastapi-2
+  api-gw:
+    build:
+      context: .
+      dockerfile: apps/node/Dockerfile
+    container_name: api-gw
     expose:
-      - "8000"
+      - "3000"
     environment:
-      - PYTHONUNBUFFERED=1
-      - APP_NAME=fastapi-2
-    networks:
-      - app-network
-
-  fastapi-3:
-    build: ./apps/python
-    container_name: fastapi-3
-    expose:
-      - "8000"
-    environment:
-      - PYTHONUNBUFFERED=1
-      - APP_NAME=fastapi-3
+      - APP_NAME=api-gw
+      - PORT=3000
     networks:
       - app-network
 
@@ -42,9 +31,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - fastapi-1
-      - fastapi-2
-      - fastapi-3
+      - fastapi
+      - api-gw
     networks:
       - app-network
 
